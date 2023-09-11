@@ -18,7 +18,8 @@ public class Employee {
     private Integer id;
     private String firstName;
     private String lastName;
-
+    @ManyToOne
+    private Travel travel;
 
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Travel {
+public class Travel {  //todo Продумать поля Сущности, создать data.sql для созадние таблиц
     @Id
     @Column(name = "id")
     private Integer id;

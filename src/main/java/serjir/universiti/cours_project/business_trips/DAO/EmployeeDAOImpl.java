@@ -1,7 +1,9 @@
 package serjir.universiti.cours_project.business_trips.DAO;
 
-import java.util.Objects;
+import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+@Component
 public class EmployeeDAOImpl implements DataServiceEmployee {
     @Override
     public void createEntity(Objects objects) {

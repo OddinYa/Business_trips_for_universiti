@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import serjir.universiti.cours_project.business_trips.entity.Travel;
 
 @Repository
-public interface TripRepo extends JpaRepository<Travel,Integer> {
+public interface TravelRepo extends JpaRepository<Travel,Integer> {
 }

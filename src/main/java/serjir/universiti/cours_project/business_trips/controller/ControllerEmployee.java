@@ -1,6 +1,7 @@
 package serjir.universiti.cours_project.business_trips.controller;
 
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +10,10 @@ import serjir.universiti.cours_project.business_trips.DAO.EmployeeDAOImpl;
 import org.springframework.stereotype.Controller;
 
 @Controller
+@Data
 @RequestMapping()
 public class ControllerEmployee {
-    @Autowired
+
     private final EmployeeDAOImpl employeeDAO;
 
 

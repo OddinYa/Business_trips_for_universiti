@@ -1,24 +1,30 @@
 package serjir.universiti.cours_project.business_trips.entity;
 
+
+
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import serjir.universiti.cours_project.business_trips.enums.Position;
 
-@Entity
+
 @Getter
 @Setter
-@Table(name ="employee")
 @EqualsAndHashCode
-
+@Entity
+@Table(name ="employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String firstName;
-    private String lastName;
-    @ManyToOne
+
+    private String Name;
+    private String Surname;
+
+    private Position position;
+    @ManyToOne()
     private Travel travel;
 
 

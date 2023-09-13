@@ -6,8 +6,8 @@ CREATE TABLE travel (
 
 CREATE TABLE employee (
                           id SERIAL PRIMARY KEY,
-                          Name VARCHAR(255),
-                          Surname VARCHAR(255),
+                          name VARCHAR(255),
+                          surname VARCHAR(255),
                           position VARCHAR(255),
                           travel_id INTEGER,
                           FOREIGN KEY (travel_id) REFERENCES travel(id)

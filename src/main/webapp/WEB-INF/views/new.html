@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/employee}" th:object="${employee}">
+<form th:method="POST" th:action="@{/employee/create}" th:object="${employee}">
     <label for="name">Enter Name:</label><br/>
     <input type="text" th:field="*{name}" id="name"/><br/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div><br/>
@@ -22,8 +22,7 @@
         <option value="CHIEF">Chief</option>
     </select><br/>
 
-    <!-- Add a hidden input field for 'travel' with a null value -->
-    <input type="hidden" th:field="*{travel}" value="${null}" />
+
 
     <input type="submit" value="Create!">
 </form>

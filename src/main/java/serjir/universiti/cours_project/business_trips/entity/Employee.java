@@ -1,11 +1,7 @@
 package serjir.universiti.cours_project.business_trips.entity;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import serjir.universiti.cours_project.business_trips.enums.Position;
+import lombok.*;
 
 
 @Getter
@@ -14,6 +10,7 @@ import serjir.universiti.cours_project.business_trips.enums.Position;
 @Entity
 @NoArgsConstructor
 @Table(name ="employee")
+@ToString
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +22,7 @@ public class Employee {
     private String position;
 
     @ManyToOne()
-    private Travel travel;
+    private Trip travel;
 
     public  Employee(String name,String surname,String position){
         this.name = name;

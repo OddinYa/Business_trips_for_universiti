@@ -2,8 +2,8 @@ package serjir.universiti.cours_project.business_trips.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import serjir.universiti.cours_project.business_trips.entity.Travel;
+import serjir.universiti.cours_project.business_trips.entity.Trip;
 
 @Repository
-public interface TravelRepo extends JpaRepository<Travel,Integer> {
+public interface TripRepo extends JpaRepository<Trip,Integer> {
 }

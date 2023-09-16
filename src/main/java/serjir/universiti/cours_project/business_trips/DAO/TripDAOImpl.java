@@ -1,36 +1,36 @@
 package serjir.universiti.cours_project.business_trips.DAO;
 
 import org.springframework.stereotype.Component;
-import serjir.universiti.cours_project.business_trips.entity.Travel;
-import serjir.universiti.cours_project.business_trips.repository.TravelRepo;
+import serjir.universiti.cours_project.business_trips.entity.Trip;
+import serjir.universiti.cours_project.business_trips.repository.TripRepo;
 
 import java.util.Optional;
 
 @Component
-public class TravelDAOImpl implements DataServiceTravel {
-    private final TravelRepo repo;
+public class TripDAOImpl implements DataServiceTrip {
+    private final TripRepo repo;
 
-    public TravelDAOImpl(TravelRepo repo) {
+    public TripDAOImpl(TripRepo repo) {
         this.repo = repo;
     }
 
 
     @Override
-    public void createEntity(Travel travel) {
+    public void createEntity(Trip travel) {
         repo.save(travel);
     }
 
     @Override
-    public Travel findTheEntity(Integer id) {
+    public Trip findTheEntity(Integer id) {
         return null;
     }
 
     @Override
-    public void updateEntity(Integer id, Travel travel) {
-        Optional<Travel> optionalTravel = repo.findById(id);
+    public void updateEntity(Integer id, Trip travel) {
+        Optional<Trip> optionalTravel = repo.findById(id);
 
         if(optionalTravel.isPresent()){
-            Travel existingTravel = optionalTravel.get();
+            Trip existingTravel = optionalTravel.get();
 
             // todo update TravelEntity
 

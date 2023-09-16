@@ -16,6 +16,6 @@ public interface DataServiceEmployee {
 
     public List<Employee> getEmployees();
 
-
+    public List<Employee> searchEntity(Integer id,String name,String surname);
 
 }

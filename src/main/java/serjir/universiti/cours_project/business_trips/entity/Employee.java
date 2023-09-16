@@ -22,12 +22,12 @@ public class Employee {
     private String position;
 
     @ManyToOne()
-    private Trip travel;
+    private Trip trip;
 
     public  Employee(String name,String surname,String position){
         this.name = name;
         this.surname = surname;
         this.position = position;
-        travel = null;
+        trip = null;
     }
 }

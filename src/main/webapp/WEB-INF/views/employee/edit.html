@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+</head>
+<body>
+
+<form th:action="@{/employee/{id}/edit}" method="POST" th:object="${employee}">
+
+    <input type="hidden" th:field="*{id}" th:value="${employee.id}"/>
+
+    <label for="name">Enter Name:</label><br/>
+    <input type="text" th:field="*{name}" id="name" th:value="${employee.name}"/><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div><br/>
+
+    <label for="surname">Enter Surname:</label><br/>
+    <input type="text" th:field="*{surname}" id="surname" th:value="${employee.surname}"/><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div><br/>
+
+    <label for="position">Select Position:</label><br/>
+    <select th:field="*{position}" id="position">
+        <option value="WORKER" th:selected="${employee.position == 'WORKER'}">Worker</option>
+        <option value="MANAGER" th:selected="${employee.position == 'MANAGER'}">Manager</option>
+        <option value="CHIEF" th:selected="${employee.position == 'CHIEF'}">Chief</option>
+    </select><br/>
+
+    <input type="submit" value="Обновить">
+</form>
+
+</body>
+</html>

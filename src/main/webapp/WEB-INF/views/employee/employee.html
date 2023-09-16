@@ -12,12 +12,15 @@
 <p>Position: <span th:text="${employee.getPosition()}"></span></p>
 
 <form th:method="GET" th:action="@{/employee/{id}/edit(id=${employee.getId()})}">
-    <input type="submit" value="Edit">
+    <input type="submit" value="Изменить">
     <br/>
 </form>
 <form th:method="DELETE" th:action="@{/employee/{id}/delete(id=${employee.getId()})}">
-    <input type="submit" value="DELETE">
+    <input type="submit" value="Удалить">
     <br/>
+</form>
+<form action="/employee" method="GET">
+    <button type="submit">Вернуться к списку</button>
 </form>
 </body>
 </html>

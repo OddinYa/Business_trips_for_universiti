@@ -31,7 +31,11 @@ public class Trip {
     @Column(name = "city")
     private String city;
     @OneToMany
-    private List<Employee> employee;
+    private List<Employee> employees;
+
+    public List<Employee> getEmployees(){
+        return employees;
+    }
 
     public Trip(Date start, Date end, String city) {
         this.city = city;

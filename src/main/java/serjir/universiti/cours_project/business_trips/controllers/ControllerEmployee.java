@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import serjir.universiti.cours_project.business_trips.DAO.TripDAOImpl;
 import serjir.universiti.cours_project.business_trips.entity.Employee;
 import serjir.universiti.cours_project.business_trips.DAO.EmployeeDAOImpl;
+import serjir.universiti.cours_project.business_trips.entity.Trip;
+
 
 import java.util.List;
 
@@ -120,7 +122,19 @@ public class ControllerEmployee {
 
     }
 
+    @GetMapping("/{id}/addtrip")
+    public String addTripToEmployee(@PathVariable("id") Integer id, Model model) {
 
+        List<Trip> trips = tripDAO.getTrips();
+
+        model.addAttribute("employee",employeeDAO.findTheEntity(id));
+        model.addAttribute("tripList",trips);
+
+        return "trip/listForEmployee";
+    }
 }
+
+
+
 
 

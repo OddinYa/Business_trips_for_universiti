@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Trip</title>
+</head>
+<body>
+
+<p>ID: <span th:text="${trip.getId()}"></span></p>
+<p>Дата начала: <span th:text="${trip.getStartDate()}"></span></p>
+<p>Дата завершения:<span th:text="${trip.getEndDate()}"></span></p>
+<p>Город: <span th:text="${trip.getCity()}"></span></p>
+
+<h2>Список сотрудников в командировке: </h2>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Должность</th>
+    <th>Подробнее</th>
+  </tr>
+  </thead>
+  <tbody>
+<tr th:each="emloyee : ${trip.getEmployees()}">
+  <td th:text="${employee.getId()}"></td>
+  <td th:text="${employee.getName()}"></td>
+  <td th:text="${employee.getSurname()}"></td>
+  <td th:text="${employee.getPosition()}"></td>
+
+    <a th:href="@{'/trip/' + ${trip.id}}">Детали</a>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+<form th:method="GET" th:action="@{/trip/{id}/edit(id=${trip.getId()})}">
+  <input type="submit" value="Изменить Командировку">
+  <br/>
+</form>
+
+<form th:method="DELETE" th:action="@{/trip/{id}/delete(id=${trip.getId()})}">
+  <input type="submit" value="Удалить Командировку">
+  <br/>
+</form>
+<form action="/trip" method="GET">
+  <button type="submit">Вернуться к списку</button>
+</form>
+</body>
+</html>

@@ -14,10 +14,10 @@
 
 <!--        <td th:text="${employee.trip != null && employee.trip.end_date <= T(java.time.LocalDate).now() ? employee.trip.city : 'Не в командировке'}"></td>-->
 
-<from th:method="GET" th:action="@{/trip/{id}/editEmployee}">
+<form th:method="GET" th:action="@{/employee/{id}/addtrip(id=${employee.getId()})}">
     <input type="submit" value="Добавить командировку">
     <br/>
-</from>
+</form>
 
 <form th:method="GET" th:action="@{/employee/{id}/edit(id=${employee.getId()})}">
     <input type="submit" value="Изменить">

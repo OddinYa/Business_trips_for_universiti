@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select trip</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/employee/{id}/addTrip(id=${employee.getId()})}">
+    <select name="tripId">
+        <option value="">Выберите командировку</option>
+
+        <th:block th:each="trip : ${tripList}">
+            <option th:value="${trip.getId()}" th:text="${trip.getCity() + ' (' + trip.getStartDate() + ' - ' + trip.getEndDate() + ')'}"></option>
+        </th:block>
+    </select>
+    <input type="submit" value="Добавить сотрудника в командировку">
+</form>
+</body>
+</html>

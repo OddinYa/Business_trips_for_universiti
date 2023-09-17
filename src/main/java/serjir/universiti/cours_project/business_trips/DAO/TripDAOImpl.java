@@ -1,6 +1,7 @@
 package serjir.universiti.cours_project.business_trips.DAO;
 
 import org.springframework.stereotype.Component;
+import serjir.universiti.cours_project.business_trips.entity.Employee;
 import serjir.universiti.cours_project.business_trips.entity.Trip;
 import serjir.universiti.cours_project.business_trips.repository.TripRepo;
 
@@ -28,20 +29,20 @@ public class TripDAOImpl implements DataServiceTrip {
 
 
     @Override
-    public void updateEntity(Integer id, Trip travel) {
+    public void updateEntity(Integer id, Trip trip) {
         Optional<Trip> optionalTravel = repo.findById(id);
 
         if (optionalTravel.isPresent()) {
-            Trip existingTravel = optionalTravel.get();
+            Trip existingTrip = optionalTravel.get();
+            Integer tempId = existingTrip.getId();
 
-            // todo update TravelEntity
-
+            existingTrip = trip;
+            existingTrip.setId(tempId);
+            repo.save(existingTrip);
         } else {
-            travel.setId(id);
-            repo.save(travel);
+            trip.setId(id);
+            repo.save(trip);
         }
-
-
     }
 
     @Override
@@ -50,7 +51,7 @@ public class TripDAOImpl implements DataServiceTrip {
     }
 
     @Override
-    public List<Trip> getEmployees() {
+    public List<Trip> getTrips() {
         return repo.findAll();
     }
 

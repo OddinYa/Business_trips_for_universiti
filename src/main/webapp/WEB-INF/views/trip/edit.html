@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать поездку</title>
+</head>
+<body>
+
+<form th:action="@{/trip/{id}/edit}" method="POST" th:object="${trip}">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <label for="startDate">Дата начала:</label><br/>
+    <input type="date" th:field="*{startDate}" id="startDate" th:value="${trip.startDate}"/><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Ошибка даты начала</div><br/>
+
+    <label for="endDate">Дата окончания:</label><br/>
+    <input type="date" th:field="*{endDate}" id="endDate" th:value="${trip.endDate}"/><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Ошибка даты окончания</div><br/>
+
+    <label for="city">Город:</label><br/>
+    <input type="text" th:field="*{city}" id="city" th:value="${trip.city}"/><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Ошибка города</div><br/>
+
+    <input type="submit" value="Обновить">
+</form>
+
+</body>
+</html>

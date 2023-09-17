@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,8 +31,9 @@ public class Trip {
     private Date endDate;
     @Column(name = "city")
     private String city;
+
     @OneToMany
-    private List<Employee> employees;
+    private List<Employee> employees = new ArrayList<>();
 
     public List<Employee> getEmployees(){
         return employees;
@@ -42,4 +44,5 @@ public class Trip {
         this.endDate = end;
         this.startDate = start;
     }
+
 }

@@ -14,7 +14,7 @@ public interface DataServiceTrip {
 
     public void deleteEntity(Integer id);
 
-    public List<Trip> getEmployees();
+    public List<Trip> getTrips();
 
     public List<Trip> searchEntity(Integer id,String name,String surname);
 

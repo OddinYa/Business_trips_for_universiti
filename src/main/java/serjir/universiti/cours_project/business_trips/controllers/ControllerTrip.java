@@ -22,8 +22,8 @@ public class ControllerTrip {
     }
 
     @GetMapping
-    private String getEmployee(Model model) {
-        model.addAttribute("trip", tripDAO.getEmployees());
+    private String getTrips(Model model) {
+        model.addAttribute("trip", tripDAO.getTrips());
         return "trip/listtrip";
     }
 
@@ -56,4 +56,22 @@ public class ControllerTrip {
         tripDAO.deleteEntity(id);
         return "trip/messageDelete";
     }
+
+    @GetMapping("/{id}/edit")
+    public String getEdit(@PathVariable("id") int id, Model model) {
+        Trip trip = tripDAO.findTheEntity(id);
+        model.addAttribute("trip", trip);
+        return "trip/edit";
+    }
+
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+    public String edit(@RequestParam("id") int id,
+                       @RequestParam("startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                       @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+                       @RequestParam("city") String city, Model model) {
+        Trip trip = new Trip(startDate,endDate,city);
+        tripDAO.updateEntity(id,trip);
+        return "redirect:/trip";
+    }
+
 }

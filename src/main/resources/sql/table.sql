@@ -1,4 +1,4 @@
-CREATE TABLE travel (
+CREATE TABLE trip (
                         id SERIAL PRIMARY KEY,
                         start_date DATE,
                         end_date DATE
@@ -9,6 +9,6 @@ CREATE TABLE employee (
                           name VARCHAR(255),
                           surname VARCHAR(255),
                           position VARCHAR(255),
-                          travel_id INTEGER,
-                          FOREIGN KEY (travel_id) REFERENCES travel(id)
+                          trip_id INTEGER,
+                          FOREIGN KEY (trip_id) REFERENCES trip(id)
 );

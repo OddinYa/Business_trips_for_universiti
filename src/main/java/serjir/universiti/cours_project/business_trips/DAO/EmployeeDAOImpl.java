@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 import serjir.universiti.cours_project.business_trips.entity.Employee;
 import serjir.universiti.cours_project.business_trips.repository.EmployeeRepo;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class EmployeeDAOImpl implements DataServiceEmployee {
@@ -17,7 +17,7 @@ public class EmployeeDAOImpl implements DataServiceEmployee {
 
     @Override
     public void createEntity(Employee employee) {
-       repo.save(employee);
+        repo.save(employee);
     }
 
     @Override
@@ -27,16 +27,17 @@ public class EmployeeDAOImpl implements DataServiceEmployee {
 
     @Override
     public void updateEntity(Integer id, Employee employee) {
+
         Optional<Employee> optionalTravel = repo.findById(id);
 
-        if(optionalTravel.isPresent()){
+        if (optionalTravel.isPresent()) {
             Employee existingTravel = optionalTravel.get();
             Integer tempId = existingTravel.getId();
             existingTravel = employee;
             existingTravel.setId(tempId);
 
             repo.save(employee);
-        }else {
+        } else {
             employee.setId(id);
             repo.save(employee);
         }
@@ -50,6 +51,33 @@ public class EmployeeDAOImpl implements DataServiceEmployee {
     @Override
     public List<Employee> getEmployees() {
 
-        return repo.findAll();
+        List<Employee> list = repo.findAll();
+        Comparator<Employee> idComparator = Comparator.comparing(Employee::getId);
+        Collections.sort(list, idComparator);
+
+        return list;
+    }
+
+    @Override
+    public List<Employee> searchEntity(Integer id, String name, String surname) {
+
+
+        if (id != null) {
+
+            return repo.findById(id).stream().toList();
+
+        } else {
+            if (surname != "") {
+
+                if (name != "") {
+                    return repo.findBySurnameAndName(surname, name);
+                }
+                return repo.findBySurname(surname);
+            } else {
+                return repo.findByName(name);
+            }
+        }
+
+
     }
 }

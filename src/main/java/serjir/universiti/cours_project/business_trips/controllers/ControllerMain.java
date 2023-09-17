@@ -2,12 +2,13 @@ package serjir.universiti.cours_project.business_trips.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
 
-@org.springframework.stereotype.Controller
+@Controller
 @RequestMapping
-public class Controller {
+public class ControllerMain {
     @GetMapping
-    public String mainController(){
+    public String mainController() {
         return "main";
     }
 }

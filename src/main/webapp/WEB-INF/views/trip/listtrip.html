@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List employees</title>
+</head>
+<body>
+<h1>Список командировок</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Начало</th>
+    <th>Конец</th>
+    <th>Город</th>
+    <th>Подробнее</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="trip : ${trip}">
+    <td th:text="${trip.id}"></td>
+    <td th:text="${trip.startDate}"></td>
+    <td th:text="${trip.endDate}"></td>
+    <td th:text="${trip.city}"></td>
+    <td>
+      <a th:href="@{'/trip/' + ${trip.id}}">Детали</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<br/>
+<hr/>
+
+<a href="/trip/new">Добавить командировку</a>
+
+<form action="/" method="GET">
+  <button type="submit">Главное меню</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+</head>
+<body>
+<h1>Результат поиска</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Position</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr th:each="employee : ${listSearch}">
+    <td th:text="${employee.id}"></td>
+    <td th:text="${employee.name}"></td>
+    <td th:text="${employee.surname}"></td>
+    <td th:text="${employee.position}"></td>
+    <td>
+      <a th:href="@{'/employee/' + ${employee.id}}">Details</a>
+    </td>
+  </tr>
+
+
+  </tbody>
+</table>
+<form action="/employee" method="GET">
+  <button type="submit">Вернуться к списку</button>
+</form>
+</body>
+</html>

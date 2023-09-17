@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Employee</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/employee/create}" th:object="${employee}">
+    <label for="name">Введите имя:</label><br/>
+    <input type="text" th:field="*{name}" id="name"  required /><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ошибка имени</div><br/>
+
+    <label for="surname">Введите фамилию:</label><br/>
+    <input type="text" th:field="*{surname}" id="surname"  required /><br/>
+    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Ошибка фамилии</div><br/>
+
+    <label for="position">Выберите должность:</label><br/>
+    <select th:field="*{position}" id="position" required>
+        <option value="WORKER">Рабочий</option>
+        <option value="MANAGER">Менеджер</option>
+        <option value="CHIEF">Начальник</option>
+    </select><br/>
+
+    <input type="submit" value="Создать сотрудника"/>
+</form>
+
+<script>
+    document.getElementById("name").addEventListener("input", function() {
+        validateInput(this);
+    });
+
+    document.getElementById("surname").addEventListener("input", function() {
+        validateInput(this);
+    });
+
+    function validateInput(input) {
+        var regex = /[А-Яа-яЁё]+/;
+        var value = input.value;
+        var isValid = regex.test(value);
+
+        if (!isValid) {
+            input.setCustomValidity("Пожалуйста, используйте только русские буквы.");
+        } else {
+            input.setCustomValidity("");
+        }
+    }
+</script>
+
+</body>
+</html>

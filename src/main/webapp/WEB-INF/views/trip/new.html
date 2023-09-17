@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add the business trip</title>
+</head>
+<body>
+<h1>Добавить новую командировку</h1>
+
+<form action="/trip/create" method="POST">
+
+    <label for="startDate">Дата начала:</label>
+    <input type="date" id="startDate" name="startDate" required><br>
+
+    <label for="endDate">Дата окончания:</label>
+    <input type="date" id="endDate" name="endDate" required><br>
+
+    <label for="city">Город:</label>
+    <input type="text" id="city" name="city"><br>
+
+
+
+    <input type="submit" value="Добавить командировку">
+</form>
+
+<br/>
+<hr/>
+
+<a href="/trip">Список командировок</a>
+</body>
+</html>

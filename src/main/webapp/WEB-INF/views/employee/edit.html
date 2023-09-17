@@ -10,19 +10,19 @@
 
     <input type="hidden" th:field="*{id}" th:value="${employee.id}"/>
 
-    <label for="name">Enter Name:</label><br/>
+    <label for="name">Имя:</label><br/>
     <input type="text" th:field="*{name}" id="name" th:value="${employee.name}"/><br/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div><br/>
 
-    <label for="surname">Enter Surname:</label><br/>
+    <label for="surname">Фамилие:</label><br/>
     <input type="text" th:field="*{surname}" id="surname" th:value="${employee.surname}"/><br/>
     <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div><br/>
 
-    <label for="position">Select Position:</label><br/>
+    <label for="position">Должность:</label><br/>
     <select th:field="*{position}" id="position">
-        <option value="WORKER" th:selected="${employee.position == 'WORKER'}">Worker</option>
-        <option value="MANAGER" th:selected="${employee.position == 'MANAGER'}">Manager</option>
-        <option value="CHIEF" th:selected="${employee.position == 'CHIEF'}">Chief</option>
+        <option value="WORKER" th:selected="${employee.position == 'WORKER'}">Рабочий</option>
+        <option value="MANAGER" th:selected="${employee.position == 'MANAGER'}">Менеджер</option>
+        <option value="CHIEF" th:selected="${employee.position == 'CHIEF'}">Начальник</option>
     </select><br/>
 
     <input type="submit" value="Обновить">

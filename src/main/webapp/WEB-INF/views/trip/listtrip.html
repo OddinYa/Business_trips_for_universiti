@@ -5,7 +5,7 @@
   <title>List employees</title>
 </head>
 <body>
-<h1>Список работников</h1>
+<h1>Список командировок</h1>
 
 <table>
   <thead>
@@ -13,7 +13,8 @@
     <th>ID</th>
     <th>Начало</th>
     <th>Конец</th>
-
+    <th>Город</th>
+    <th>Подробнее</th>
   </tr>
   </thead>
   <tbody>
@@ -21,6 +22,7 @@
     <td th:text="${trip.id}"></td>
     <td th:text="${trip.startDate}"></td>
     <td th:text="${trip.endDate}"></td>
+    <td th:text="${trip.city}"></td>
     <td>
       <a th:href="@{'/trip/' + ${trip.id}}">Детали</a>
     </td>
@@ -32,5 +34,10 @@
 <hr/>
 
 <a href="/trip/new">Добавить командировку</a>
+
+<form action="/" method="GET">
+  <button type="submit">Главное меню</button>
+</form>
+
 </body>
 </html>

@@ -25,6 +25,7 @@
         <td th:text="${employee.surname}"></td>
         <td th:text="${employee.position}"></td>
         <td th:text="${employee.trip != null ? employee.trip.name : 'Не в командировке'}"></td>
+<!--        <td th:text="${employee.trip != null && employee.trip.end_date <= T(java.time.LocalDate).now() ? employee.trip.city : 'Не в командировке'}"></td>-->
         <td>
             <a th:href="@{'/employee/' + ${employee.id}}">Детали</a>
         </td>
@@ -32,9 +33,15 @@
     </tbody>
 </table>
 
+
 <br/>
 <hr/>
 
 <a href="/employee/new">Добавить работника</a>
+<form action="/" method="GET">
+    <button type="submit">Главное меню</button>
+</form>
+
+
 </body>
 </html>

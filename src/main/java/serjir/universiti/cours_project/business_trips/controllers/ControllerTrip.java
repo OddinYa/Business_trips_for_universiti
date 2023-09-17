@@ -1,10 +1,17 @@
 package serjir.universiti.cours_project.business_trips.controllers;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import serjir.universiti.cours_project.business_trips.DAO.TripDAOImpl;
+import serjir.universiti.cours_project.business_trips.entity.Trip;
+
+import java.util.Date;
 
 
 @Controller
@@ -23,5 +30,22 @@ public class ControllerTrip {
         return "trip/listtrip";
     }
 
+    @GetMapping("new")
+    public String newEmployeeForm(Model model) {
+        return "trip/new";
+    }
+
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String create(@RequestParam("startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                         @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+                         @RequestParam("city") String city, Model model) {
+
+
+        Trip trip = new Trip(startDate, endDate, city);
+
+        tripDAO.createEntity(trip);
+
+        return "redirect:/trip";
+    }
 
 }

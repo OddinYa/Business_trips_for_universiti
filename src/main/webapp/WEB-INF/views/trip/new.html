@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Add the business trip</title>
+    <script>
+        function validateForm() {
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+
+            if (startDate > endDate) {
+                alert("Дата начала не может быть больше даты окончания!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
 <h1>Добавить новую командировку</h1>
 
-<form action="/trip/create" method="POST">
+<form action="/trip/create" method="POST" onsubmit="return validateForm();">
 
     <label for="startDate">Дата начала:</label>
     <input type="date" id="startDate" name="startDate" required><br>
@@ -17,8 +30,6 @@
 
     <label for="city">Город:</label>
     <input type="text" id="city" name="city"><br>
-
-
 
     <input type="submit" value="Добавить командировку">
 </form>

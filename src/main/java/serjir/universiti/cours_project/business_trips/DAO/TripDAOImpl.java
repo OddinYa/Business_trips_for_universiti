@@ -3,17 +3,22 @@ package serjir.universiti.cours_project.business_trips.DAO;
 import org.springframework.stereotype.Component;
 import serjir.universiti.cours_project.business_trips.entity.Employee;
 import serjir.universiti.cours_project.business_trips.entity.Trip;
+import serjir.universiti.cours_project.business_trips.repository.EmployeeRepo;
 import serjir.universiti.cours_project.business_trips.repository.TripRepo;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class TripDAOImpl implements DataServiceTrip {
     private final TripRepo repo;
+    private final EmployeeRepo employeeRepo;
 
-    public TripDAOImpl(TripRepo repo) {
+    public TripDAOImpl(TripRepo repo,
+                       EmployeeRepo employeeRepo) {
         this.repo = repo;
+        this.employeeRepo = employeeRepo;
     }
 
 
@@ -55,8 +60,18 @@ public class TripDAOImpl implements DataServiceTrip {
         return repo.findAll();
     }
 
+
     @Override
-    public List<Trip> searchEntity(Integer id, String name, String surname) {
-        return null;
+    public void deleteList(int id) {
+       Trip trip = repo.findById(id).get();
+       List<Employee> employees = trip.getEmployees();
+
+       employees.forEach(employee -> employee.setTrip(null));
+
+       employees.clear();
+
+       trip.setEmployees(null);
     }
+
+
 }

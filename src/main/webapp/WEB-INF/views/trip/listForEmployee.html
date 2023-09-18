@@ -6,14 +6,30 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/employee/{id}/addTrip(id=${employee.getId()})}">
-    <select name="tripId">
+    <select name="tripId" id="tripId" onchange="enableSubmit()">
         <option value="">Выберите командировку</option>
 
         <th:block th:each="trip : ${tripList}">
-            <option th:value="${trip.getId()}" th:text="${trip.getCity() + ' (' + trip.getStartDate() + ' - ' + trip.getEndDate() + ')'}"></option>
+            <th:if test="${trip != null}">
+                <option th:value="${trip.getId()}" th:text="${trip.getCity() + ' (' + trip.getStartDate() + ' - ' + trip.getEndDate() + ')'}"></option>
+            </th:if>
         </th:block>
     </select>
-    <input type="submit" value="Добавить сотрудника в командировку">
+    <input type="submit" value="Добавить сотрудника в командировку" id="submitButton" disabled>
 </form>
+
+<script>
+    function enableSubmit() {
+        var tripId = document.getElementById("tripId");
+        var submitButton = document.getElementById("submitButton");
+
+        if (tripId.value !== "") {
+            submitButton.removeAttribute("disabled");
+        } else {
+            submitButton.setAttribute("disabled", "disabled");
+        }
+    }
+</script>
+
 </body>
 </html>

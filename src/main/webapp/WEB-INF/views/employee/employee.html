@@ -10,11 +10,23 @@
 <p>Имя: <span th:text="${employee.getName()}"></span></p>
 <p>Фамилие: <span th:text="${employee.getSurname()}"></span></p>
 <p>Должность: <span th:text="${employee.getPosition()}"></span></p>
-<p>Командировка: <span th:text = "${employee.trip != null ? employee.trip.name : 'Не в командировке'}"></span></p>
+<p>Командировка:
+    <th:block th:with="tripInfo=${employee.getTrip()}">
+        <td th:text="${tripInfo != null && (tripInfo.getEndDate() > T(java.time.LocalDate).now()) ? 'Город: ' + tripInfo.city + ', Даты: ' + tripInfo.startDate + ' - ' + tripInfo.endDate : 'Не в командировке'}"></td>
+    </th:block>
 
-<!--        <td th:text="${employee.trip != null && employee.trip.end_date <= T(java.time.LocalDate).now() ? employee.trip.city : 'Не в командировке'}"></td>-->
+<form th:if="${employee.trip != null}" th:method="POST" th:action="@{/employee/{id}/deletetrip(id=${employee.getId()})}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Удалить командировку">
+    <br/>
+</form>
 
-<form th:method="GET" th:action="@{/employee/{id}/addtrip(id=${employee.getId()})}">
+<form th:if="${employee.trip != null}" th:method="GET" th:action="@{/employee/{id}/addtrip(id=${employee.getId()})}">
+    <input type="submit" value="Изменить командировку">
+    <br/>
+</form>
+
+<form th:if="${employee.trip == null}" th:method="GET" th:action="@{/employee/{id}/addtrip(id=${employee.getId()})}">
     <input type="submit" value="Добавить командировку">
     <br/>
 </form>

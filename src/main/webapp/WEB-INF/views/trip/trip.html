@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Trip</title>
+    <meta charset="UTF-8">
+    <title>Trip</title>
 </head>
 <body>
 
@@ -13,39 +13,42 @@
 
 <h2>Список сотрудников в командировке: </h2>
 <table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Имя</th>
-    <th>Фамилия</th>
-    <th>Должность</th>
-    <th>Подробнее</th>
-  </tr>
-  </thead>
-  <tbody>
-<tr th:each="emloyee : ${trip.getEmployees()}">
-  <td th:text="${employee.getId()}"></td>
-  <td th:text="${employee.getName()}"></td>
-  <td th:text="${employee.getSurname()}"></td>
-  <td th:text="${employee.getPosition()}"></td>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Должность</th>
 
-    <a th:href="@{'/trip/' + ${trip.id}}">Детали</a>
-  </td>
-</tr>
-  </tbody>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${trip.getEmployees()}">
+        <td th:text="${employee.getId()}"></td>
+        <td th:text="${employee.getName()}"></td>
+        <td th:text="${employee.getSurname()}"></td>
+        <td th:text="${employee.getPosition()}"></td>
+        <td><a th:href="@{'/employee/' + ${employee.getId()}}">Детали</a></td>
+        </td>
+    </tr>
+    </tbody>
 </table>
 
+<form action="/employee" method="GET">
+    <button type="submit">Список сотрудников</button>
+</form>
+
 <form th:method="GET" th:action="@{/trip/{id}/edit(id=${trip.getId()})}">
-  <input type="submit" value="Изменить Командировку">
-  <br/>
+    <input type="submit" value="Изменить Командировку">
+    <br/>
 </form>
 
 <form th:method="DELETE" th:action="@{/trip/{id}/delete(id=${trip.getId()})}">
-  <input type="submit" value="Удалить Командировку">
-  <br/>
+    <input type="submit" value="Удалить Командировку">
+    <br/>
 </form>
 <form action="/trip" method="GET">
-  <button type="submit">Вернуться к списку</button>
+    <button type="submit">Вернуться к списку</button>
 </form>
 </body>
 </html>

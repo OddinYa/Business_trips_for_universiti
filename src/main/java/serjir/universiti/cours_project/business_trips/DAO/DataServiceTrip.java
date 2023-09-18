@@ -1,6 +1,7 @@
 package serjir.universiti.cours_project.business_trips.DAO;
 
 
+import serjir.universiti.cours_project.business_trips.entity.Employee;
 import serjir.universiti.cours_project.business_trips.entity.Trip;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface DataServiceTrip {
 
     public List<Trip> getTrips();
 
-    public List<Trip> searchEntity(Integer id,String name,String surname);
+    public void deleteList(int id);
+
 
 }

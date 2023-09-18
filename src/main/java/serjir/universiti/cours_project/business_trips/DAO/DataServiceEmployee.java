@@ -1,6 +1,7 @@
 package serjir.universiti.cours_project.business_trips.DAO;
 
 import serjir.universiti.cours_project.business_trips.entity.Employee;
+import serjir.universiti.cours_project.business_trips.entity.Trip;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,5 +18,7 @@ public interface DataServiceEmployee {
     public List<Employee> getEmployees();
 
     public List<Employee> searchEntity(Integer id,String name,String surname);
+
+    public void addTrip(Employee employee, Trip trip);
 
 }

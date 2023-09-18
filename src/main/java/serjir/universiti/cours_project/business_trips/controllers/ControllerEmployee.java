@@ -1,7 +1,6 @@
 package serjir.universiti.cours_project.business_trips.controllers;
 
 
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -101,9 +100,9 @@ public class ControllerEmployee {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam(name = "id", required = false) Integer id,
-                       @RequestParam(name = "name", required = false) String name,
-                       @RequestParam(name = "surname", required = false) String surname,
-                       Model model) {
+                         @RequestParam(name = "name", required = false) String name,
+                         @RequestParam(name = "surname", required = false) String surname,
+                         Model model) {
 
         int nonNullParamCount = 0;
         if (id != null) nonNullParamCount++;
@@ -114,9 +113,9 @@ public class ControllerEmployee {
             return "error-page";
         }
 
-        List<Employee> listSearch = employeeDAO.searchEntity(id,name,surname);
+        List<Employee> listSearch = employeeDAO.searchEntity(id, name, surname);
 
-        model.addAttribute("listSearch",listSearch);
+        model.addAttribute("listSearch", listSearch);
 
         return "employee/result";
 
@@ -127,11 +126,36 @@ public class ControllerEmployee {
 
         List<Trip> trips = tripDAO.getTrips();
 
-        model.addAttribute("employee",employeeDAO.findTheEntity(id));
-        model.addAttribute("tripList",trips);
+        model.addAttribute("employee", employeeDAO.findTheEntity(id));
+        model.addAttribute("tripList", trips);
 
         return "trip/listForEmployee";
     }
+
+    @RequestMapping(value = "{id}/addTrip", method = RequestMethod.POST)
+    public String addTrip(@PathVariable("id") int id, @RequestParam("tripId") int tripId) {
+       Employee employee = employeeDAO.findTheEntity(id);
+       Trip trip = tripDAO.findTheEntity(tripId);
+       employeeDAO.addTrip(employee,trip);
+
+       return "employee/tripForEmployee";
+    }
+    @PostMapping(value = "{id}/deletetrip")
+    public String deleteTrip(@PathVariable("id") int id){
+        Employee employee = employeeDAO.findTheEntity(id);
+        Trip trip = employee.getTrip();
+        int tripId = trip.getId();
+        trip.deleteEmployee(employee);
+
+        tripDAO.updateEntity(tripId,trip);
+
+        employee.setTrip(null);
+
+        employeeDAO.updateEntity(id,employee);
+
+        return "redirect:/employee/" + id;
+    }
+
 }
 
 

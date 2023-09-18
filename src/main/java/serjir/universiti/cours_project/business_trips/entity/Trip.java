@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,11 +25,11 @@ public class Trip {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
     @Column(name = "city")
     private String city;
 
@@ -39,10 +40,18 @@ public class Trip {
         return employees;
     }
 
-    public Trip(Date start, Date end, String city) {
+    public Trip(LocalDate start, LocalDate end, String city) {
         this.city = city;
         this.endDate = end;
         this.startDate = start;
     }
 
+    public void addEmployee(Employee employee){
+        employees.add(employee);
+    }
+
+    public void deleteEmployee(Employee employee) {
+       Integer employeeIdToDelete = employee.getId();
+       employees.removeIf(obj -> obj.getId()==employeeIdToDelete);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import serjir.universiti.cours_project.business_trips.DAO.TripDAOImpl;
 import serjir.universiti.cours_project.business_trips.entity.Trip;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -33,8 +34,8 @@ public class ControllerTrip {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@RequestParam("startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                         @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+    public String create(@RequestParam("startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate startDate,
+                         @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
                          @RequestParam("city") String city, Model model) {
 
 
@@ -53,7 +54,9 @@ public class ControllerTrip {
 
     @PostMapping(value = "/{id}/delete")
     public String delete(@PathVariable("id") int id, Model model) {
+        tripDAO.deleteList(id);
         tripDAO.deleteEntity(id);
+
         return "trip/messageDelete";
     }
 
@@ -66,8 +69,8 @@ public class ControllerTrip {
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
     public String edit(@RequestParam("id") int id,
-                       @RequestParam("startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                       @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+                       @RequestParam("startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                       @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
                        @RequestParam("city") String city, Model model) {
         Trip trip = new Trip(startDate,endDate,city);
         tripDAO.updateEntity(id,trip);

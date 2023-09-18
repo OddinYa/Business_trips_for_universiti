@@ -11,11 +11,11 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Position</th>
-        <th>Travel</th>
-        <th>Action</th>
+        <th>Имя</th>
+        <th>Фамилие</th>
+        <th>Должность</th>
+        <th>Командировка</th>
+        <th>Действие</th>
     </tr>
     </thead>
     <tbody>
@@ -24,8 +24,9 @@
         <td th:text="${employee.name}"></td>
         <td th:text="${employee.surname}"></td>
         <td th:text="${employee.position}"></td>
-        <td th:text="${employee.trip != null ? employee.trip.name : 'Не в командировке'}"></td>
-<!--        <td th:text="${employee.trip != null && employee.trip.end_date <= T(java.time.LocalDate).now() ? employee.trip.city : 'Не в командировке'}"></td>-->
+        <th:block th:with="tripInfo=${employee.getTrip()}">
+            <td th:text="${tripInfo != null && (tripInfo.getEndDate() > T(java.time.LocalDate).now()) ? 'Город: ' + tripInfo.city + ', Даты: ' + tripInfo.startDate + ' - ' + tripInfo.endDate : 'Не в командировке'}"></td>
+        </th:block>
         <td>
             <a th:href="@{'/employee/' + ${employee.id}}">Детали</a>
         </td>

@@ -1,7 +1,8 @@
 CREATE TABLE trip (
                         id SERIAL PRIMARY KEY,
                         start_date DATE,
-                        end_date DATE
+                        end_date DATE,
+                        city varchar(255)
 );
 
 CREATE TABLE employee (

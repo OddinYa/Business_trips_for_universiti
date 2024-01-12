@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>E:\Мой диск\Общая учебная папка\III семестр\Курсовая работа 14вар\myJob\Business_trips\build\libs\Business_trips-0.0.1-SNAPSHOT.jar</jar>
+  <outfile>E:\Мой диск\Общая учебная папка\III семестр\Курсовая работа 14вар\myJob\Business_trips\build\libs\MyProj.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <classPath>
+    <mainClass>org.springframework.boot.loader.JarLauncher</mainClass>
+    <cp>E:\Мой диск\Общая учебная папка\III семестр\Курсовая работа 14вар\myJob\Business_trips\build\libs\Business_trips-0.0.1-SNAPSHOT.jar</cp>
+  </classPath>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>1.8.0_0</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>

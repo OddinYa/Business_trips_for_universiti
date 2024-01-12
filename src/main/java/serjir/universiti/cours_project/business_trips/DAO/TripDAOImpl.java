@@ -73,5 +73,25 @@ public class TripDAOImpl implements DataServiceTrip {
        trip.setEmployees(null);
     }
 
+    @Override
+    public String createFile(Trip trip) {
+        StringBuilder result = new StringBuilder();
+        result.append(trip.getCity());
+        result.append("  ");
+        result.append(trip.getStartDate());
+        result.append(" - ");
+        result.append(trip.getEndDate());
+        result.append("\n");
+        result.append("Список сотрудников в командировке:"+"\n");
+        result.append("id"+ "\t"+"Имя"+"\t"+"Фамилие"+"\n");
+        for (Employee e : trip.getEmployees())
+        {
+         result.append(e.getId()+"\t"+e.getName()+"\t"+e.getSurname());
+         result.append("\n");
+        }
+
+        return result.toString();
+    }
+
 
 }

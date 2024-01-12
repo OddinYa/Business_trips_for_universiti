@@ -23,10 +23,35 @@
         <option value="WORKER" th:selected="${employee.position == 'WORKER'}">Рабочий</option>
         <option value="MANAGER" th:selected="${employee.position == 'MANAGER'}">Менеджер</option>
         <option value="CHIEF" th:selected="${employee.position == 'CHIEF'}">Начальник</option>
+
+        <input type="hidden" th:field="*{trip}" th:value="${employee.trip}"/>
+
     </select><br/>
 
     <input type="submit" value="Обновить">
 </form>
+
+<script>
+    document.getElementById("name").addEventListener("input", function() {
+        validateInput(this);
+    });
+
+    document.getElementById("surname").addEventListener("input", function() {
+        validateInput(this);
+    });
+
+    function validateInput(input) {
+        var regex = /[А-Яа-яЁё]+/;
+        var value = input.value;
+        var isValid = regex.test(value);
+
+        if (!isValid) {
+            input.setCustomValidity("Пожалуйста, используйте только русские буквы.");
+        } else {
+            input.setCustomValidity("");
+        }
+    }
+</script>
 
 </body>
 </html>

@@ -1,13 +1,14 @@
 package serjir.universiti.cours_project.business_trips.DAO;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 import serjir.universiti.cours_project.business_trips.entity.Employee;
 import serjir.universiti.cours_project.business_trips.entity.Trip;
 import serjir.universiti.cours_project.business_trips.repository.EmployeeRepo;
 
+
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 @Component
 public class EmployeeDAOImpl implements DataServiceEmployee {
@@ -49,7 +50,17 @@ public class EmployeeDAOImpl implements DataServiceEmployee {
 
     @Override
     public void deleteEntity(Integer id) {
-        repo.deleteById(id);
+
+        Employee em = findTheEntity(id);
+
+        if (em.getTrip() != null) {
+            em.getTrip().deleteEmployee(em);
+            updateEntity(id,em);
+
+        }
+
+            repo.deleteById(id);
+
     }
 
     @Override

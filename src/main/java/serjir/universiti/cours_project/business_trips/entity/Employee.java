@@ -2,8 +2,6 @@ package serjir.universiti.cours_project.business_trips.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -30,4 +28,5 @@ public class Employee {
         this.position = position;
         trip = null;
     }
+
 }

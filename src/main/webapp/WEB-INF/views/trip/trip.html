@@ -34,6 +34,8 @@
     </tbody>
 </table>
 
+
+
 <form action="/employee" method="GET">
     <button type="submit">Список сотрудников</button>
 </form>
@@ -50,5 +52,7 @@
 <form action="/trip" method="GET">
     <button type="submit">Вернуться к списку</button>
 </form>
+
+<a th:href="@{'/trip/' + ${trip.id} + '/download'}">Скачать файлом</a>
 </body>
 </html>

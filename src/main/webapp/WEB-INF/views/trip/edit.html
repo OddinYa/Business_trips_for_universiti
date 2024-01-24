@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактировать поездку</title>
+
+
 </head>
 <body>
 
@@ -11,11 +13,11 @@
     <input type="hidden" th:field="*{id}"/>
 
     <label for="startDate">Дата начала:</label><br/>
-    <input type="date" th:field="*{startDate}" id="startDate" th:value="${trip.startDate}"/><br/>
+    <input type="date" th:field="*{startDate}" id="startDate"  required/><br/>
     <div style="color:red" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Ошибка даты начала</div><br/>
 
     <label for="endDate">Дата окончания:</label><br/>
-    <input type="date" th:field="*{endDate}" id="endDate" th:value="${trip.endDate}"/><br/>
+    <input type="date" th:field="*{endDate}" id="endDate" required/><br/>
     <div style="color:red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Ошибка даты окончания</div><br/>
 
     <label for="city">Город:</label><br/>

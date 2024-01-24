@@ -1,38 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Search Results</title>
+  <style>
+    h1 {
+      font-size: 24px;
+    }
+  </style>
 </head>
 <body>
 <h1>Результат поиска</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Position</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
+<th:block th:if="${not #lists.isEmpty(listSearch)}">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Position</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${listSearch}">
+      <td th:text="${employee.id}"></td>
+      <td th:text="${employee.name}"></td>
+      <td th:text="${employee.surname}"></td>
+      <td th:text="${employee.position}"></td>
+      <td>
+        <a th:href="@{'/employee/' + ${employee.id}}">Details</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</th:block>
 
-  <tr th:each="employee : ${listSearch}">
-    <td th:text="${employee.id}"></td>
-    <td th:text="${employee.name}"></td>
-    <td th:text="${employee.surname}"></td>
-    <td th:text="${employee.position}"></td>
-    <td>
-      <a th:href="@{'/employee/' + ${employee.id}}">Details</a>
-    </td>
-  </tr>
+<th:block th:if="${#lists.isEmpty(listSearch)}">
+  <p style="font-size: 20px;">Не найдено</p>
+</th:block>
 
-
-  </tbody>
-</table>
 <form action="/employee" method="GET">
   <button type="submit">Вернуться к списку</button>
 </form>

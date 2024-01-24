@@ -79,7 +79,8 @@ public class ControllerEmployee {
     public String edit(@RequestParam("id") int id,
                        @RequestParam("name") String name,
                        @RequestParam("surname") String surname,
-                       @RequestParam("position") String position) {
+                       @RequestParam("position") String position,
+                       @RequestParam("trip")Trip trip) {
 
 
         Employee employee = new Employee();
@@ -87,6 +88,7 @@ public class ControllerEmployee {
         employee.setName(name);
         employee.setSurname(surname);
         employee.setPosition(position);
+        employee.setTrip(trip);
 
         employeeDAO.updateEntity(id, employee);
 
